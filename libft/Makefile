@@ -6,7 +6,7 @@
 #    By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/11 20:51:49 by kamitsui          #+#    #+#              #
-#    Updated: 2023/06/06 19:42:08 by kamitsui         ###   ########.fr        #
+#    Updated: 2023/06/09 21:00:38 by kamitsui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,8 @@ DEP_DIR = .dep
 SRCS = \
 	   ft_strlen.c \
 	   ft_strncmp.c \
-	   ft_strnequ.c
+	   ft_strnequ.c \
+	   ft_split.c
 
 # Object files and dependency files
 OBJS = $(addprefix $(OBJ_DIR)/, $(SRCS:%.c=%.o))
