@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 11:59:34 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/06/08 20:47:55 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/06/09 20:39:49 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	initialize_args(int argc, char **argv, char **env, t_args *args)
 	args->file1 = argv[1];
 	args->file2 = argv[argc - 1];
 	args->cmds = &argv[2];
-	args->num_cmds = argc - 4;
+	args->num_cmds = argc - 3;
 	args->env = env;
 }
 
@@ -40,6 +40,10 @@ void	child_process(t_args *args, int pipefd[2], int i)
 	int		arg_count;
 	char	*token;
 
+// Debug Code
+	printf("child process No:%d\n", i);
+	printf("\tArgument\t%s\n", args->cmds[i]);
+
 	token = strtok(args->cmds[i], " ");
 	command = token;
 	arg_count = 0;
@@ -50,11 +54,12 @@ void	child_process(t_args *args, int pipefd[2], int i)
 		token = strtok(NULL, " ");
 	}
 	arguments[arg_count] = NULL;
+// Debug Code
 // Print the arguments
 	int	j = 0;
-	while (j < arg_count)
+	while (arguments[j] != NULL)
 	{
-		printf("Argument %d %s\n", j, arguments[j]);
+		printf("\ttokenized\t%d %s\n", j, arguments[j]);
 		j++;
 	}
 //	set_input();
@@ -71,6 +76,7 @@ void	create_process(t_args *args, int pipefd[2])
 	int		i;
 
 	i = 0;
+	printf("num_cmds: %d\n", args->num_cmds);
 	while (i < args->num_cmds)
 	{
 		pid = fork();
