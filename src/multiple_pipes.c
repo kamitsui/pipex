@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 11:59:34 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/06/09 20:39:49 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/06/09 22:13:55 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,33 +35,44 @@ void	initialize_args(int argc, char **argv, char **env, t_args *args)
 
 void	child_process(t_args *args, int pipefd[2], int i)
 {
-	char	*command;
-	char	*arguments[MAX_ARGS];// ??
-	int		arg_count;
-	char	*token;
+//	char	*command;
+	char	**arguments;// for split()
+//	char	*arguments[MAX_ARGS];// for strtok()
+//	int		arg_count;
+//	char	*token;
 
 // Debug Code
 	printf("child process No:%d\n", i);
 	printf("\tArgument\t%s\n", args->cmds[i]);
 
-	token = strtok(args->cmds[i], " ");
-	command = token;
-	arg_count = 0;
-	while (token != NULL && arg_count < MAX_ARGS - 1)
+	arguments = ft_split(args->cmds[i], ' ');
+	if (arguments == NULL)
 	{
-		arguments[arg_count] = token;
-		arg_count++;
-		token = strtok(NULL, " ");
+		perror("ft_split");
+		exit(1);
 	}
-	arguments[arg_count] = NULL;
+//	token = strtok(args->cmds[i], " ");
+//	command = token;
+//	arg_count = 0;
+//	while (token != NULL && arg_count < MAX_ARGS - 1)
+//	{
+//		arguments[arg_count] = token;
+//		arg_count++;
+//		token = strtok(NULL, " ");
+//	}
+//	arguments[arg_count] = NULL;
 // Debug Code
 // Print the arguments
 	int	j = 0;
 	while (arguments[j] != NULL)
 	{
+		if (arguments[j] == NULL)
+			break ;
 		printf("\ttokenized\t%d %s\n", j, arguments[j]);
+		free(arguments[j]);// for split()
 		j++;
 	}
+	free(arguments);// for split()
 //	set_input();
 //	set_output();
 //	ft_execvp(file, cmd_argv);
@@ -91,6 +102,12 @@ void	create_process(t_args *args, int pipefd[2])
 	}
 }
 
+// leaks check
+__attribute__((destructor)) static void destructor()
+{
+	system("leaks -q pipex");
+}
+
 int	multiple_pipes(int argc, char **argv, char **env)
 {
 	t_args	args;
@@ -113,6 +130,7 @@ int	multiple_pipes(int argc, char **argv, char **env)
 		wait(&status);
 		i++;
 	}
+	destructor();
 	return (0);
 }
 // Debug code : in else (Multiple pipe)

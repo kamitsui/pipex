@@ -6,7 +6,7 @@
 #    By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/11 20:51:49 by kamitsui          #+#    #+#              #
-#    Updated: 2023/06/09 21:00:38 by kamitsui         ###   ########.fr        #
+#    Updated: 2023/06/09 21:33:45 by kamitsui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,9 +18,12 @@ DEP_DIR = .dep
 
 # Source files
 SRCS = \
+	   ft_memcpy.c \
 	   ft_strlen.c \
+	   ft_strnlen.c \
 	   ft_strncmp.c \
 	   ft_strnequ.c \
+	   ft_strndup.c \
 	   ft_split.c
 
 # Object files and dependency files
