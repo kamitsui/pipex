@@ -6,20 +6,28 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 18:43:55 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/06/08 12:07:39 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/06/10 19:57:40 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "pipex.h"
-//#include <stdlib.h>
+#include <stdlib.h>
 #include <stdbool.h>
 #include <stdio.h>// for debug
 #include <unistd.h>// for debug
+#include <string.h>// fordebug
+
+// leaks check
+//__attribute__((destructor)) static void destructor()
+//{
+//	system("leaks -q pipex");
+//}
 
 int	main(int argc, char **argv, char **env)
 {
 	char	*str_err;
+	int		result = 0;
 
 	if (argc < 5)
 	{
@@ -33,8 +41,10 @@ int	main(int argc, char **argv, char **env)
 	// Multiple pipe
 	else
 	{
-		if (multiple_pipes(argc, argv, env) == false)
-			return (1);
+		result = multiple_pipes(argc, argv, env);
+//		if (multiple_pipes(argc, argv, env) == false)
+//			return (1);
 	}
-	return (0);
+	system("leaks -q pipex");
+	return (result);
 }

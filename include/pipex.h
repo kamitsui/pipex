@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 12:04:40 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/06/08 12:08:34 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/06/10 18:11:14 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 typedef struct s_args
 {
-	char	*file1;
-	char	*file2;
+	char	*in_file;
+	char	*out_file;
 	char	**cmds;
 	int		num_cmds;
 	char	**env;
