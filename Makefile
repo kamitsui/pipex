@@ -6,7 +6,7 @@
 #    By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/09 14:39:52 by kamitsui          #+#    #+#              #
-#    Updated: 2023/06/08 12:09:16 by kamitsui         ###   ########.fr        #
+#    Updated: 2023/06/14 19:09:07 by kamitsui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,10 @@ LIBFT_DIR = libft
 # Source files
 SRCS = \
 	   pipex.c \
-	   multiple_pipes.c
+	   child_process.c \
+	   set_input.c \
+	   set_output.c \
+	   error.c
 
 # Object files and dependency files
 OBJS = $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
