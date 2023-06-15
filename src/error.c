@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 19:00:38 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/06/14 20:34:00 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/06/15 14:31:29 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ void	ft_perr_exit(char *message)
 int	check_mode(char **argv)
 {
 	if (ft_strnequ(argv[1], HERE_DOC, ft_strlen(argv[1])) == 1)
-		return (BIT_HERE_DOC | BIT_OVER_RIDE);
+		return (BIT_HERE_DOC | BIT_APPEND);
 	else
-		return (BIT_NORMAL);
+		return (BIT_NORMAL | BIT_OVER_RIDE);
 }
 
 void	check_argc(int argc)
@@ -37,7 +37,7 @@ void	check_argc(int argc)
 	if (argc < 5)
 	{
 		err_message = "Insufficient arguments!\n";
-		printf("%s\n", err_message);
+		printf("%s", err_message);
 		//ft_printf("%s\n", err_message);
 		exit (1);
 	}

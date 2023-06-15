@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 12:04:40 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/06/14 20:43:26 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/06/15 14:32:24 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # define BIT_NORMAL		0x00
 # define BIT_HERE_DOC	0x01
 # define BIT_OVER_RIDE	0x02
+# define BIT_APPEND		0x04
 
 typedef struct s_pipex
 {

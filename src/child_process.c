@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 19:02:41 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/06/14 20:57:07 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/06/15 16:16:01 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,59 @@
 #include <string.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <stdio.h>// for debug
+#include "get_next_line.h"//for debug
 
 //int	ft_execvp(const char *file, char *const argv[])
 //{
 //}
 
+// Debug Code : single pipe case OK
+// ./pipex file1 "ls" "ls -l" file2
+// cat file2
+// --- write from i=1 ---
+// --- write from i=0 ---
+// aaaa
+//		child 1		file1 -> STDIN -> write(message) & write(gnl) -> STDOUT
+//		child 2		STDIN(STDOUT of child 1) -> write(gnl) -> STDOUT -> file2
+void	debug_fileno(int i)
+{
+	char *line;
+	char *test_message;
+
+	if (i == 0)
+	{
+		test_message = "--- write from i=0 ---\n";
+		write(STDOUT_FILENO, test_message, ft_strlen(test_message));
+		line = get_next_line(STDIN_FILENO);
+		write(STDOUT_FILENO, line, ft_strlen(line));
+		free(line);
+	}
+	else
+	{
+		test_message = "--- write from i=1 ---\n";
+		write(STDOUT_FILENO, test_message, ft_strlen(test_message));
+		while ((line = get_next_line(STDIN_FILENO)) != NULL)
+		{
+			write(STDOUT_FILENO, line, ft_strlen(line));
+			free(line);
+		}
+	}
+	exit (0);
+}
+
+// Debug Code
+//void	debug_arguments(char *arguments[])
+//{
+//	int	j = 0;
+//
+//	while (arguments[j] != NULL)
+//	{
+//		printf("\targuments[%d]\t%s\n", j, arguments[j]);
+//		free(arguments[j]);// for split()
+//		j++;
+//	}
+//}
 
 void	child_process(t_pipex *pipex, int pipefd[2], char *arguments[], int i)
 {
@@ -27,23 +75,12 @@ void	child_process(t_pipex *pipex, int pipefd[2], char *arguments[], int i)
 	if (arguments == NULL)
 		return ;
 
-//	char	*command;
-
-// Debug Code
-//	int	j = 0;
-//	while (arguments[j] != NULL)
-//	{
-//		printf("\targuments[%d]\t%s\n", j, arguments[j]);
-//		free(arguments[j]);// for split()
-//		j++;
-//	}
+//	debug_arguments(arguments);// for Debug
 	set_input(pipex, pipefd, i);
 	set_output(pipex, pipefd, i);
 	close(pipefd[READ_END]);
 	close(pipefd[WRITE_END]);
-//	char *test_message = "write from i=0";
-//	if (i == 0)
-//		write(STDOUT_FILENO, test_message, ft_strlen(test_message));
+	debug_fileno(i);// for Debug
 //	ft_execvp(file, cmd_args);
 	exit(1);
 }

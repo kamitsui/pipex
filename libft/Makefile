@@ -6,7 +6,7 @@
 #    By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/11 20:51:49 by kamitsui          #+#    #+#              #
-#    Updated: 2023/06/09 21:33:45 by kamitsui         ###   ########.fr        #
+#    Updated: 2023/06/15 13:30:26 by kamitsui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,12 +19,18 @@ DEP_DIR = .dep
 # Source files
 SRCS = \
 	   ft_memcpy.c \
+	   ft_memmove.c \
+	   ft_split.c \
+	   ft_strchr.c \
+	   ft_strdup.c \
+	   ft_strjoin.c \
 	   ft_strlen.c \
-	   ft_strnlen.c \
 	   ft_strncmp.c \
-	   ft_strnequ.c \
 	   ft_strndup.c \
-	   ft_split.c
+	   ft_strnequ.c \
+	   ft_strnlen.c \
+	   \
+	   get_next_line.c
 
 # Object files and dependency files
 OBJS = $(addprefix $(OBJ_DIR)/, $(SRCS:%.c=%.o))
