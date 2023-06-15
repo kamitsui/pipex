@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 11:59:34 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/06/14 20:50:23 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/06/15 17:58:10 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,17 @@ void	create_process(t_pipex *pipex, int pipefd[2])
 	}
 }
 //	printf("num_cmds: %d\n", pipex->num_cmds);
-//		printf("pid:%d\n", pid);// child pid
+//		printf("pid:%d i:%d\n", pid, i);// child pid
+//		./pipex file1 "ls" "ls -l" "333" "444" file2
+//		pid:4256 i:0
+//		pid:4257 i:1
+//		pid:0 i:0
+//		pid:4258 i:2
+//		pid:0 i:1
+//		pid:4259 i:3
+//		pid:0 i:2
+//		pid:0 i:3
+//		...^C fleaze
 
 int	main(int argc, char **argv, char **env)
 {
