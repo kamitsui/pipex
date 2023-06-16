@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 12:04:40 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/06/15 14:32:24 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/06/16 16:08:22 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,13 @@ typedef struct s_pipex
 //int		pipexple_pipex(int argc, char **argv, char **env);
 void	set_input(t_pipex *pipex, int pipfd[2], int i);
 void	set_output(t_pipex *pipex, int pipfd[2], int i);
+void	input_redirect(t_pipex *pipex);
+void	output_redirect(t_pipex *pipex);
 int	check_mode(char **argv);
 void	check_argc(int argc);
 void	ft_perr_exit(char *message);
+void	ft_errno_exit(char *cause);
+void	parent_process(int pipefd[2]);
 void	child_process(t_pipex *pipex, int pipefd[2], char *arguments[], int i);
 
 #endif

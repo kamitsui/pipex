@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 19:02:41 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/06/15 18:21:38 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/06/16 16:26:42 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,57 @@
 #include <unistd.h>
 #include <stdio.h>// for debug
 #include "get_next_line.h"//for debug
+
+void	child_process(t_pipex *pipex, int pipefd[2], char **cmd_args, int i)
+{
+	char	*file;
+
+	file = cmd_args[0];
+	close(pipefd[READ_END]);
+	if (i < pipex->num_cmds - 1)
+		if (dup2(pipefd[WRITE_END], STDOUT_FILENO) == -1)
+		{
+			close(pipefd[WRITE_END]);
+			ft_errno_exit("dup2");
+		}
+//	if (i == 0)
+//	{
+//		close(pipefd[WRITE_END]);
+//		input_redirect(pipex);
+//	}
+//	else
+//	{
+//		close(pipefd[READ_END]);
+//		dup2(pipefd[WRITE_END], STDOUT_FILENO);
+//	}
+	execvp(file, cmd_args);
+	ft_errno_exit("execvp");// Fix this !!!!!!!!!!!!!!
+//	if (i == pipex->num_cmds -1)
+//	{
+//		close(pipefd[READ_END]);
+//		output_redirect(pipex);
+//	}
+}
+
+//void	child_process(t_pipex *pipex, int pipefd[2], char *arguments[], int i)
+//{
+//	char	*file = arguments[0];
+//	char	**cmd_args = arguments;
+//// Deleate ! may be...
+//	if (arguments == NULL)
+//		return ;
+//
+////	debug_arguments(arguments);// for Debug
+//	set_input(pipex, pipefd, i);
+//	set_output(pipex, pipefd, i);
+//	close(pipefd[READ_END]);
+//	close(pipefd[WRITE_END]);
+////	debug_arguments(arguments);
+////	debug_fileno(i);// for Debug
+//	execvp(file, cmd_args);
+////	ft_execvp(file, cmd_args);
+//	exit(1);
+//}
 
 //int	ft_execvp(const char *file, char *const argv[])
 //{
@@ -77,24 +128,4 @@ void	debug_arguments(char *arguments[])
 		free(arguments[j]);// for split()
 		j++;
 	}
-}
-
-void	child_process(t_pipex *pipex, int pipefd[2], char *arguments[], int i)
-{
-	char	*file = arguments[0];
-	char	**cmd_args = arguments;
-// Deleate ! may be...
-	if (arguments == NULL)
-		return ;
-
-//	debug_arguments(arguments);// for Debug
-	set_input(pipex, pipefd, i);
-	set_output(pipex, pipefd, i);
-	close(pipefd[READ_END]);
-	close(pipefd[WRITE_END]);
-//	debug_arguments(arguments);
-//	debug_fileno(i);// for Debug
-	execvp(file, cmd_args);
-//	ft_execvp(file, cmd_args);
-	exit(1);
 }

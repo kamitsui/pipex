@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 14:27:16 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/06/14 20:21:51 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/06/16 16:29:03 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ void	input_redirect(t_pipex *pipex)
 		close(fdin);
 	}
 	else
-		input_err_handle(pipex);
+		ft_errno_exit(pipex->in_file);
+//		input_err_handle(pipex);
 }
 // Must Fix
 		//ft_printf("bash: %s: %s\n", pipex->in_file, err_message);

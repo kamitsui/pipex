@@ -6,7 +6,7 @@
 #    By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/09 14:39:52 by kamitsui          #+#    #+#              #
-#    Updated: 2023/06/14 19:09:07 by kamitsui         ###   ########.fr        #
+#    Updated: 2023/06/16 12:31:31 by kamitsui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ LIBFT_DIR = libft
 # Source files
 SRCS = \
 	   pipex.c \
+	   parent_process.c \
 	   child_process.c \
 	   set_input.c \
 	   set_output.c \
