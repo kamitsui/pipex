@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 14:27:16 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/06/16 16:29:03 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/06/16 16:58:36 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,7 @@
 #include <stdio.h>
 #include <string.h>
 
-void	input_err_handle(t_pipex *pipex)
-{
-	int		err_number;
-	char	*err_message;
-
-	err_number = errno;
-	err_message = strerror(err_number);
-	printf("bash: %s: %s\n", pipex->in_file, err_message);// Must Fix
-	exit (1);
-}
-
-void	input_redirect(t_pipex *pipex)
+static void	input_redirect(t_pipex *pipex)
 {
 	int		fdin;
 
@@ -50,34 +39,20 @@ void	input_redirect(t_pipex *pipex)
 	}
 	else
 		ft_errno_exit(pipex->in_file);
-//		input_err_handle(pipex);
 }
-// Must Fix
-		//ft_printf("bash: %s: %s\n", pipex->in_file, err_message);
 
-void	here_doc(t_pipex *pipex)
+static void	here_doc(t_pipex *pipex)
 {
 	if (pipex == NULL)
 		return ;
-	printf("%s\n", HERE_DOC);
+	printf("%s\n", HERE_DOC);// Fix this !!!!!!!!!!!!!!!!!
 	return ;
 }
 
-void	set_input(t_pipex *pipex, int pipefd[2], int i)
+void	set_input(t_pipex *pipex)
 {
-	if (i != 0)
-	{
-		if (dup2(pipefd[READ_END], STDIN_FILENO) == -1)
-		{
-			perror("dup2");
-			exit (1);
-		}
-	}
+	if (pipex->mode & BIT_HERE_DOC)
+		here_doc(pipex);
 	else
-	{
-		if (pipex->mode & BIT_HERE_DOC)
-			here_doc(pipex);
-		else
-			input_redirect(pipex);
-	}
+		input_redirect(pipex);
 }

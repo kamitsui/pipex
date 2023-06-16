@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 12:04:27 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/06/16 16:20:56 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/06/16 17:53:01 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,3 @@ void	parent_process(int pipefd[2])
 	if (terminal_pid == -1)
 		ft_errno_exit("waitpid");
 }
-
