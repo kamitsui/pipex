@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 12:04:40 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/06/16 17:44:24 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/06/19 17:34:30 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # define READ_END	0
 # define WRITE_END	1
 # define HERE_DOC	"here_doc"
+# define PROMPT		">"
 
 # define BIT_NORMAL		0x00
 # define BIT_HERE_DOC	0x01
