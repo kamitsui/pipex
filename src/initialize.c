@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 17:16:31 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/06/20 12:53:32 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/06/20 17:08:39 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,16 @@ void	initialize_pipex(int argc, char **argv, char **env, t_pipex *pipex)
 	pipex->num_cmds = argc - 3 - offset;
 	pipex->env = env;
 	pipex->dir = substr_env("PATH", env);
+	free(pipex->dir);
 }
 	// debug code
-//	char *token = pipex->dir;
+//#include <unistd.h>// debug
+//	printf("PATH |%s| initialize\n", pipex->dir);
+//	char *token = ft_strtok(pipex->dir, ":");
 //	while (token != NULL)
 //	{
-//		printf("token:(%s)\n", token);// debug
+//		write(1, token, ft_strlen(token));
+//		write(1, "\n", 1);
+//		//printf("token:(%s)\n", token);// debug
 //		token = ft_strtok(NULL, ":");
 //	}
-//	free(pipex->dir);

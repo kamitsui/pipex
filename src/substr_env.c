@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 10:37:40 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/06/20 12:51:31 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/06/20 17:03:23 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,5 @@ char	*substr_env(char *name, char *env[])
 	dir = (char *)ft_strdup(env[i] + name_len + 1);
 	if (dir == NULL)
 		return (NULL);
-	return (ft_strtok(dir, ":"));
+	return (dir);
 }
