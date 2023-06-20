@@ -6,7 +6,7 @@
 #    By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/11 20:51:49 by kamitsui          #+#    #+#              #
-#    Updated: 2023/06/20 12:23:38 by kamitsui         ###   ########.fr        #
+#    Updated: 2023/06/20 21:07:35 by kamitsui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,17 +18,26 @@ DEP_DIR = .dep
 
 # Source files
 SRCS = \
+	   ft_bzero.c \
+	   ft_isdigit.c \
+	   ft_isxdigit.c \
 	   ft_itoa.c \
+	   ft_itoa_binary.c \
 	   ft_memcpy.c \
 	   ft_memmove.c \
 	   ft_split.c \
 	   ft_strchr.c \
 	   ft_strdup.c \
 	   ft_strjoin.c \
+	   ft_strjoin_free.c \
+	   ft_strlcat.c \
+	   ft_strlcpy.c \
 	   ft_strlen.c \
+	   ft_strncat.c \
 	   ft_strncmp.c \
 	   ft_strndup.c \
 	   ft_strnequ.c \
+	   ft_strnew.c \
 	   ft_strnlen.c \
 	   ft_strtok.c \
 	   \

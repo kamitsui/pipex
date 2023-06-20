@@ -1,34 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   ft_strjoin_free.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/14 19:00:38 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/06/20 22:06:47 by kamitsui         ###   ########.fr       */
+/*   Created: 2023/02/19 14:20:58 by kamitsui          #+#    #+#             */
+/*   Updated: 2023/03/24 10:57:29 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-#include <stdio.h>
-#include <string.h>
-#include <errno.h>
-#include <unistd.h>
+#include <stdlib.h>
+#include "libft.h"
 
-void	ft_errno_exit(char *cause)
+char	*ft_strjoin_free(const char *s1, const char *s2)
 {
-	int		error_number;
-	char	*error_message;
+	char	*str;
+	size_t	len1;
+	size_t	len2;
 
-	error_number = errno;
-	error_message = strerror(error_number);
-	ft_fprintf(STDERR_FILENO, "bash: %s: %s\n", cause, error_message);
-	exit (1);
-}
-
-void	ft_perr_exit(char *message)
-{
-	perror(message);
-	exit (1);
+	if (!s1 || !s2)
+		return (NULL);
+	len1 = ft_strlen(s1);
+	len2 = ft_strlen(s2);
+	str = ft_strnew(len1 + len2);
+	if (str == NULL)
+		return (NULL);
+	ft_strlcpy(str, s1, len1 + 1);
+	ft_strlcat(str, s2, len1 + len2 + 1);
+	free((void *)s1);
+	return (str);
 }

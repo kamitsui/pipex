@@ -6,17 +6,13 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 15:48:55 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/06/16 17:09:15 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/06/20 21:58:03 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
-#include <stdlib.h>
 #include <unistd.h>
 #include <fcntl.h>
-#include <errno.h>
-#include <stdio.h>
-#include <string.h>
 
 void	set_output(t_pipex *pipex)
 {

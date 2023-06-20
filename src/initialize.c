@@ -6,14 +6,13 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 17:16:31 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/06/20 17:08:39 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/06/20 22:03:13 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include "ft_printf.h"
 #include "pipex.h"
-#include <stdlib.h>
-#include <stdio.h>// delete this !!!!!!
 
 static int	check_mode(char **argv)
 {
@@ -30,8 +29,7 @@ void	check_argc(int argc)
 	if (argc < 5)
 	{
 		err_message = "Insufficient arguments!\n";
-		printf("%s", err_message);// Fix this !!!!!!!!!!!!!!!!
-		exit (1);
+		ft_perr_exit(err_message);
 	}
 }
 

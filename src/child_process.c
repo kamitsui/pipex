@@ -6,14 +6,12 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 19:02:41 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/06/20 17:36:02 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/06/20 22:08:12 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "pipex.h"
-#include <string.h>
-#include <stdlib.h>
 #include <unistd.h>
 
 void	child_process(t_pipex *pipex, int pipefd[2], char **cmd_args, int i)
@@ -30,9 +28,8 @@ void	child_process(t_pipex *pipex, int pipefd[2], char **cmd_args, int i)
 			ft_errno_exit("dup2");
 		}
 	}
-	//execvp(file, cmd_args);
 	exec_file(file, cmd_args, pipex->env);
-	ft_errno_exit(file);// Fix this !!!!!!!!!!!!!!
+	ft_errno_exit(file);
 }
 
 // Debug Code

@@ -1,34 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   substr_env.c                                       :+:      :+:    :+:   */
+/*   prefix.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/20 10:37:40 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/06/20 21:56:26 by kamitsui         ###   ########.fr       */
+/*   Created: 2023/03/18 20:40:43 by kamitsui          #+#    #+#             */
+/*   Updated: 2023/03/24 10:53:39 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include "libft.h"
-#include <stdbool.h>
+#include "ft_printf.h"
+#include "process.h"
 
-char	*substr_env(char *name, char *env[])
+int	prefix(const char *input, t_sm *machine)
 {
-	char	*dir;
-	size_t	name_len;
-	int		i;
+	static char	*str_prefix[NB_PREFIX] = {
+		PREFIX_HH, PREFIX_LL, PREFIX_H, PREFIX_L};
+	int			size;
+	int			i;
 
-	name_len = ft_strlen(name);
+	size = 0;
 	i = 0;
-	while (env[i] != NULL)
+	while (i < NB_PREFIX)
 	{
-		if (ft_strnequ(env[i], name, name_len) == true)
-			break ;
+		if (i < 2)
+			size = 2;
+		else
+			size = 1;
+		if (ft_strnequ(input, str_prefix[i], size) == TRUE)
+		{
+			machine->flag |= (1 << i) << 8;
+			return (size);
+		}
 		i++;
 	}
-	dir = (char *)ft_strdup(env[i] + name_len + 1);
-	if (dir == NULL)
-		return (NULL);
-	return (dir);
+	machine->state = TYPE;
+	return (0);
 }

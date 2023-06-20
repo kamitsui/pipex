@@ -1,34 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   s_hh.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/14 19:00:38 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/06/20 22:06:47 by kamitsui         ###   ########.fr       */
+/*   Created: 2023/03/20 17:23:17 by kamitsui          #+#    #+#             */
+/*   Updated: 2023/03/20 18:25:18 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdarg.h>
 #include "ft_printf.h"
-#include <stdio.h>
-#include <string.h>
-#include <errno.h>
-#include <unistd.h>
 
-void	ft_errno_exit(char *cause)
+long long	s_hh(t_sm *machine)
 {
-	int		error_number;
-	char	*error_message;
+	signed char	num;
 
-	error_number = errno;
-	error_message = strerror(error_number);
-	ft_fprintf(STDERR_FILENO, "bash: %s: %s\n", cause, error_message);
-	exit (1);
+	num = (signed char)va_arg(*(machine->ap), int);
+	return ((long long)num);
 }
-
-void	ft_perr_exit(char *message)
-{
-	perror(message);
-	exit (1);
-}
+//note
+//num = (short char)va_arg(*(machine->ap), short char);
+//complie error:	this va_arg has undefined behavior
+//					because type short will be promoted to int.

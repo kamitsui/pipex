@@ -1,34 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   u_decimal.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/14 19:00:38 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/06/20 22:06:47 by kamitsui         ###   ########.fr       */
+/*   Created: 2023/03/09 14:44:02 by kamitsui          #+#    #+#             */
+/*   Updated: 2023/03/29 18:13:25 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stddef.h>
 #include "ft_printf.h"
-#include <stdio.h>
-#include <string.h>
-#include <errno.h>
-#include <unistd.h>
+#include "process.h"
+#include "conversion.h"
+#include "va_arg.h"
+#include "formalize.h"
+#include "libft.h"
 
-void	ft_errno_exit(char *cause)
+void	u_decimal(t_sm *machine)
 {
-	int		error_number;
-	char	*error_message;
+	char				str[42];
+	unsigned long long	num;
+	int					base;
 
-	error_number = errno;
-	error_message = strerror(error_number);
-	ft_fprintf(STDERR_FILENO, "bash: %s: %s\n", cause, error_message);
-	exit (1);
-}
-
-void	ft_perr_exit(char *message)
-{
-	perror(message);
-	exit (1);
+	ft_bzero(str, 42);
+	base = 10;
+	num = u_va_arg(machine);
+	if (!((machine->flag & BIT_PREC) && (machine->prec == 0) && (num == 0)))
+		itoa_buff(num, str, base, machine);
+	formalize(str, machine);
 }

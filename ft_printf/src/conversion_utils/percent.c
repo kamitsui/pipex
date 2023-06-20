@@ -1,34 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   percent.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/14 19:00:38 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/06/20 22:06:47 by kamitsui         ###   ########.fr       */
+/*   Created: 2023/03/09 14:42:03 by kamitsui          #+#    #+#             */
+/*   Updated: 2023/03/22 12:11:02 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
-#include <string.h>
-#include <errno.h>
-#include <unistd.h>
+#include "process.h"
+#include "conversion.h"
+#include "formalize.h"
+#include "libft.h"
 
-void	ft_errno_exit(char *cause)
+void	percent(t_sm *machine)
 {
-	int		error_number;
-	char	*error_message;
+	char	str[2];
 
-	error_number = errno;
-	error_message = strerror(error_number);
-	ft_fprintf(STDERR_FILENO, "bash: %s: %s\n", cause, error_message);
-	exit (1);
+	ft_bzero(str, 2);
+	str[0] = '%';
+	formalize(str, machine);
 }
-
-void	ft_perr_exit(char *message)
-{
-	perror(message);
-	exit (1);
-}
+//this code moved to formalize.c
+//	add_to_buff('%', machine);

@@ -1,34 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   width.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/14 19:00:38 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/06/20 22:06:47 by kamitsui         ###   ########.fr       */
+/*   Created: 2023/03/18 20:47:49 by kamitsui          #+#    #+#             */
+/*   Updated: 2023/03/25 16:16:57 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stddef.h>
 #include "ft_printf.h"
-#include <stdio.h>
-#include <string.h>
-#include <errno.h>
-#include <unistd.h>
+#include "process.h"
+#include "libft.h"
 
-void	ft_errno_exit(char *cause)
+int	width(const char *input, t_sm *machine)
 {
-	int		error_number;
-	char	*error_message;
+	size_t	size;
 
-	error_number = errno;
-	error_message = strerror(error_number);
-	ft_fprintf(STDERR_FILENO, "bash: %s: %s\n", cause, error_message);
-	exit (1);
-}
-
-void	ft_perr_exit(char *message)
-{
-	perror(message);
-	exit (1);
+	size = 0;
+	if (ft_isdigit(*input) == TRUE)
+	{
+		machine->flag |= BIT_WIDTH;
+		size = get_field_nbr(input, machine);
+	}
+	return (size);
 }

@@ -1,34 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   pad_n_str.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/14 19:00:38 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/06/20 22:06:47 by kamitsui         ###   ########.fr       */
+/*   Created: 2023/03/23 11:29:10 by kamitsui          #+#    #+#             */
+/*   Updated: 2023/03/29 22:49:11 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
-#include <string.h>
-#include <errno.h>
-#include <unistd.h>
+#include "process.h"
+#include "libft.h"
 
-void	ft_errno_exit(char *cause)
+void	pad_n_str(const char *str, t_sm *machine, int limit)
 {
-	int		error_number;
-	char	*error_message;
+	int	i;
 
-	error_number = errno;
-	error_message = strerror(error_number);
-	ft_fprintf(STDERR_FILENO, "bash: %s: %s\n", cause, error_message);
-	exit (1);
-}
-
-void	ft_perr_exit(char *message)
-{
-	perror(message);
-	exit (1);
+	i = 0;
+	while (i < limit && (machine->state != ERROR))
+	{
+		add_to_buff(str[i], machine);
+		i++;
+	}
 }

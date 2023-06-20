@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 17:47:01 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/06/20 17:45:06 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/06/20 22:15:49 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <unistd.h>
-#include <stdio.h>// delete !!!!!!!!!
 
 static char	*join_path(char const *dir, char const *file)
 {

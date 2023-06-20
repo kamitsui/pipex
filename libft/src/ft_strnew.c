@@ -1,34 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   ft_strnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/14 19:00:38 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/06/20 22:06:47 by kamitsui         ###   ########.fr       */
+/*   Created: 2023/02/20 13:08:51 by kamitsui          #+#    #+#             */
+/*   Updated: 2023/03/28 22:45:36 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-#include <stdio.h>
-#include <string.h>
-#include <errno.h>
-#include <unistd.h>
+#include <stdlib.h>
 
-void	ft_errno_exit(char *cause)
+char	*ft_strnew(size_t size)
 {
-	int		error_number;
-	char	*error_message;
+	char	*str;
+	size_t	i;
 
-	error_number = errno;
-	error_message = strerror(error_number);
-	ft_fprintf(STDERR_FILENO, "bash: %s: %s\n", cause, error_message);
-	exit (1);
+	str = (char *)malloc(sizeof(char) * (size + 1));
+	if (str == NULL)
+		return (NULL);
+	i = 0;
+	while (i < size)
+	{
+		str[i] = '\0';
+		i++;
+	}
+	return (str);
 }
-
-void	ft_perr_exit(char *message)
-{
-	perror(message);
-	exit (1);
-}
+//#include <stdio.h>//for debug code
+//int	main(void)
+//{
+//	char	*str = ft_strnew(42);
+//	printf("str |%s|\n", str);
+//}
+//	printf("%zu:i\n", i);

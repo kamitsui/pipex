@@ -6,19 +6,15 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 14:27:16 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/06/19 18:02:57 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/06/20 21:58:52 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 #include "libft.h"
 #include "get_next_line.h"
-#include <stdlib.h>
 #include <unistd.h>
 #include <fcntl.h>
-#include <errno.h>
-#include <stdio.h>
-#include <string.h>
 #include <stdbool.h>
 
 static void	input_redirect(t_pipex *pipex)
@@ -29,15 +25,9 @@ static void	input_redirect(t_pipex *pipex)
 	{
 		fdin = open(pipex->in_file, O_RDONLY);
 		if (fdin == -1)
-		{
-			perror("open");
-			exit (1);
-		}
+			ft_perr_exit("open");
 		if (dup2(fdin, STDIN_FILENO) == -1)
-		{
-			perror("dup2");
-			exit (1);
-		}
+			ft_perr_exit("dup2");
 		close(fdin);
 	}
 	else
