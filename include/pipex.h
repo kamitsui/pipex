@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 12:04:40 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/06/19 17:34:30 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/06/20 12:52:18 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef struct s_pipex
 	int		n_status;
 	int		mode;
 	char	*limiter;
+	char	*dir;
 }	t_pipex;
 
 void	initialize_pipex(int argc, char **argv, char **env, t_pipex *pipex);
@@ -43,5 +44,7 @@ void	ft_perr_exit(char *message);
 void	ft_errno_exit(char *cause);
 void	parent_process(int pipefd[2]);
 void	child_process(t_pipex *pipex, int pipefd[2], char *arguments[], int i);
+void	ft_execute(char *file, char **cmd_args, t_pipex *pipex);
+char	*substr_env(char *name, char *env[]);
 
 #endif

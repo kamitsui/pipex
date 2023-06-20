@@ -6,7 +6,7 @@
 #    By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/11 20:51:49 by kamitsui          #+#    #+#              #
-#    Updated: 2023/06/15 18:02:45 by kamitsui         ###   ########.fr        #
+#    Updated: 2023/06/20 12:23:38 by kamitsui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ SRCS = \
 	   ft_strndup.c \
 	   ft_strnequ.c \
 	   ft_strnlen.c \
+	   ft_strtok.c \
 	   \
 	   get_next_line.c
 

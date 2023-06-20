@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 11:59:34 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/06/16 17:44:41 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/06/20 12:55:40 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ int	main(int argc, char **argv, char **env)
 	set_input(&pipex);
 	set_output(&pipex);
 	create_process(&pipex);
+//	system("leaks pipex");
 	return (0);
 }
 

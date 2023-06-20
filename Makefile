@@ -6,7 +6,7 @@
 #    By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/09 14:39:52 by kamitsui          #+#    #+#              #
-#    Updated: 2023/06/16 17:20:13 by kamitsui         ###   ########.fr        #
+#    Updated: 2023/06/20 12:51:56 by kamitsui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,10 +22,12 @@ SRCS = \
 	   pipex.c \
 	   parent_process.c \
 	   child_process.c \
+	   ft_execute.c \
 	   set_input.c \
 	   set_output.c \
 	   initialize.c \
-	   error.c
+	   error.c \
+	   substr_env.c
 
 # Object files and dependency files
 OBJS = $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))

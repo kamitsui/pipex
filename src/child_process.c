@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 19:02:41 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/06/16 17:52:19 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/06/20 11:12:00 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	child_process(t_pipex *pipex, int pipefd[2], char **cmd_args, int i)
 		}
 	}
 	execvp(file, cmd_args);
+	//ft_execute(file, cmd_args, pipex);
 	ft_errno_exit("execvp");// Fix this !!!!!!!!!!!!!!
 }
 
