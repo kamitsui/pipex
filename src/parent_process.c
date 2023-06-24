@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 12:04:27 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/06/16 17:53:01 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/06/22 13:57:34 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 #include <unistd.h>
 #include <sys/wait.h>
 
-void	parent_process(int pipefd[2])
+//void	parent_process(int pipefd[2])
+void	parent_process(int pipefd[2], int *status)
 {
 	pid_t	terminal_pid;
 
@@ -24,7 +25,8 @@ void	parent_process(int pipefd[2])
 		close(pipefd[READ_END]);
 		ft_errno_exit("dup2");
 	}
-	terminal_pid = waitpid(-1, NULL, WNOHANG);
+	//terminal_pid = waitpid(-1, NULL, WNOHANG);
+	terminal_pid = waitpid(-1, status, WNOHANG);
 	if (terminal_pid == -1)
 		ft_errno_exit("waitpid");
 }

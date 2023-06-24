@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 11:59:34 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/06/20 12:55:40 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/06/22 16:51:21 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ static void	create_process(t_pipex *pipex)
 	int		i;
 	char	**cmd_args;
 	pid_t	pid;
+	int		status;// debug
 
 	i = 0;
 	while (i < pipex->num_cmds)
@@ -49,7 +50,8 @@ static void	create_process(t_pipex *pipex)
 		else if (pid == 0)
 			child_process(pipex, pipefd, cmd_args, i);
 		else
-			parent_process(pipefd);
+			//parent_process(pipefd);
+			parent_process(pipefd, &status);
 		free_args(cmd_args);
 		i++;
 	}
