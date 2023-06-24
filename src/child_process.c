@@ -6,11 +6,12 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 19:02:41 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/06/20 22:08:12 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/06/24 20:31:12 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include "ft_printf.h"
 #include "pipex.h"
 #include <unistd.h>
 
@@ -29,7 +30,8 @@ void	child_process(t_pipex *pipex, int pipefd[2], char **cmd_args, int i)
 		}
 	}
 	exec_file(file, cmd_args, pipex->env);
-	ft_errno_exit(file);
+	ft_fprintf(STDERR_FILENO, "bash: %s: command not found\n", file);
+	exit (127);
 }
 
 // Debug Code
