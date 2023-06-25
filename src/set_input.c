@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 14:27:16 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/06/20 21:58:52 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/06/25 15:20:25 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,22 +16,34 @@
 #include <unistd.h>
 #include <fcntl.h>
 #include <stdbool.h>
+#include <stdio.h>
 
-static void	input_redirect(t_pipex *pipex)
+static int	input_redirect(t_pipex *pipex)
 {
-	int		fdin;
+	int	fdin;
+	int	status;
 
+	status = 0;
 	if (access(pipex->in_file, F_OK | R_OK) == 0)
 	{
 		fdin = open(pipex->in_file, O_RDONLY);
 		if (fdin == -1)
-			ft_perr_exit("open");
+			perror("open");
 		if (dup2(fdin, STDIN_FILENO) == -1)
-			ft_perr_exit("dup2");
+			perror("dup2");
 		close(fdin);
 	}
 	else
-		ft_errno_exit(pipex->in_file);
+	{
+		fdin = open("/dev/null", O_RDONLY);
+		if (fdin == -1)
+			perror("open");
+		if (dup2(fdin, STDIN_FILENO) == -1)
+			perror("dup2");
+		close(fdin);
+		status = ft_errno_set_status(pipex->in_file) != 0;
+	}
+	return (status);
 }
 
 static void	write_to_pipefd(int fd, char *end_of_block)
@@ -54,11 +66,13 @@ static void	write_to_pipefd(int fd, char *end_of_block)
 	exit(0);// exit(6);// ?????
 }
 
-static void	here_doc(t_pipex *pipex)
+static int	here_doc(t_pipex *pipex)
 {
 	int		pipefd[2];
 	pid_t	pid;
+	int		status;
 
+	status = 0;
 	if (pipe(pipefd) == -1)
 		ft_perr_exit("pipe");
 	pid = fork();
@@ -76,12 +90,16 @@ static void	here_doc(t_pipex *pipex)
 		dup2(pipefd[READ_END], STDIN_FILENO);
 		close(pipefd[READ_END]);
 	}
+	return (status);
 }
 
-void	set_input(t_pipex *pipex)
+int	set_input(t_pipex *pipex)
 {
+	int	status;
+
 	if (pipex->mode & BIT_HERE_DOC)
-		here_doc(pipex);
+		status = here_doc(pipex);
 	else
-		input_redirect(pipex);
+		status = input_redirect(pipex);
+	return (status);
 }

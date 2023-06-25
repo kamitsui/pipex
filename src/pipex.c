@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 11:59:34 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/06/22 16:51:21 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/06/25 15:22:53 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ static void	create_process(t_pipex *pipex)
 	int		i;
 	char	**cmd_args;
 	pid_t	pid;
-	int		status;// debug
+	int		status;
 
-	i = 0;
+	i = pipex->status != 0;
 	while (i < pipex->num_cmds)
 	{
 		cmd_args = ft_split(pipex->cmds[i], ' ');
@@ -50,7 +50,6 @@ static void	create_process(t_pipex *pipex)
 		else if (pid == 0)
 			child_process(pipex, pipefd, cmd_args, i);
 		else
-			//parent_process(pipefd);
 			parent_process(pipefd, &status);
 		free_args(cmd_args);
 		i++;
@@ -63,7 +62,7 @@ int	main(int argc, char **argv, char **env)
 
 	check_argc(argc);
 	initialize_pipex(argc, argv, env, &pipex);
-	set_input(&pipex);
+	pipex.status = set_input(&pipex);
 	set_output(&pipex);
 	create_process(&pipex);
 //	system("leaks pipex");

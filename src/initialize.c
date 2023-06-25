@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 17:16:31 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/06/20 22:03:13 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/06/24 21:36:23 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	initialize_pipex(int argc, char **argv, char **env, t_pipex *pipex)
 	pipex->num_cmds = argc - 3 - offset;
 	pipex->env = env;
 	pipex->dir = substr_env("PATH", env);
+	pipex->status = 0;
 	free(pipex->dir);
 }
 	// debug code
