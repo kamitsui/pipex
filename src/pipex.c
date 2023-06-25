@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 11:59:34 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/06/25 15:22:53 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/06/25 16:45:26 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,23 +68,3 @@ int	main(int argc, char **argv, char **env)
 //	system("leaks pipex");
 	return (0);
 }
-
-// Debug code : in else (pipexple pipe)
-//#include <stdio.h>// for debug
-//		printf("%s\n", pipex.in_file);
-//		printf("%s\n", pipex.out_file);
-//		printf("mode:%d, limiter:%s\n", pipex.mode, pipex.limiter);
-//		int	k = 0;
-//		while (k < pipex.num_cmds)
-//		{
-//			printf("%s\n", pipex.cmds[k]);
-//			k++;
-//		}
-//		printf("%d\n", pipex.num_cmds);
-//		printf("\nenv:\n");
-//		int	j = 0;
-//		while (pipex.env[j] != NULL)
-//		{
-//			printf("%s\n", pipex.env[j]);
-//			j++;
-//		}
