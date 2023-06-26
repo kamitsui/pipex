@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 17:47:01 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/06/20 22:15:49 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/06/26 12:18:16 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,15 +58,17 @@ static void	search_exec_file(char *file, char *arguments[], char *env[])
 	free(dir);
 }
 
-int	exec_file(char *file, char *arguments[], char *env[])
+void	exec_file(char *file, char *arguments[], char *env[])
 {
 	if (file == NULL || arguments == NULL || env == NULL)
-		return (-1);
+		return ;
 	if (ft_strnequ(file, "/", 1) == true)
-		execve(file, arguments, env);
+		if (access(file, F_OK | X_OK) == 0)
+			execve(file, arguments, env);
+		else
+			ft_errno_exit(file);
 	else
 		search_exec_file(file, arguments, env);
-	return (0);
 }
 //	else if ("./")
 //	else if ("../")

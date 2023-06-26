@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 11:59:34 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/06/25 16:45:26 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/06/26 12:00:48 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,26 @@ static void	free_args(char **cmd_args)
 	}
 	free(cmd_args);
 }
+
+//static char	*ft_split_cmd(const char *cmd, char c)
+//{
+//	int	i;
+//	char	str[1024];
+//	char	sep[2];
+//	char	*token;
+//
+//	ft_strcpy(str, cmd);
+//	sep[0] = c;
+//	sep[1] = '\0';
+//	i = 0;
+//	while (str[i] != c && str[i] != '\0')
+//		i++;
+//	token = ft_strtok(&str[i], (const char *)sep);
+//	while (token != NULL)
+//	{
+//	
+//	}
+//}
 
 static void	create_process(t_pipex *pipex)
 {
