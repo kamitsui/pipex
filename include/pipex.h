@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 12:04:40 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/06/28 13:40:51 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/07/04 20:39:55 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ void	set_output(t_pipex *pipex);
 void	ft_perr_exit(char *message);
 void	ft_errno_exit(char *cause);
 int		ft_errno_set_status(char *cause);
-//void	parent_process(int pipefd[2], int *status);
 void	parent_process(int pipefd[2]);
 void	child_process(t_pipex *pipex, int pipefd[2], char *arguments[], int i);
 void	exec_file(char *file, char *arguments[], char *env[]);

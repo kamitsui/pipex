@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 12:04:27 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/07/04 18:37:02 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/07/04 20:40:30 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,4 +22,5 @@ void	parent_process(int pipefd[2])
 		close(pipefd[READ_END]);
 		ft_errno_exit("dup2");
 	}
+	return ;
 }

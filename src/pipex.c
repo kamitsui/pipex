@@ -6,11 +6,12 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 11:59:34 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/07/04 19:41:36 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/07/04 20:43:07 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include "ft_printf.h"// debug
 #include "pipex.h"
 #include <stdlib.h>
 #include <unistd.h>
