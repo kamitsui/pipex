@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 14:27:16 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/06/25 15:20:25 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/07/04 19:27:46 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static void	write_to_pipefd(int fd, char *end_of_block)
 	}
 	free(line);
 	close(fd);
-	exit(0);// exit(6);// ?????
+	exit(0);
 }
 
 static int	here_doc(t_pipex *pipex)

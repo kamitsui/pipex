@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 19:00:38 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/06/24 21:06:53 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/07/04 18:35:26 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	ft_errno_set_status(char *cause)
 
 	error_number = errno;
 	error_message = strerror(error_number);
-	ft_fprintf(STDERR_FILENO, "bash: %s: %s\n", cause, error_message);
+	ft_fprintf(stderr, "bash: %s: %s\n", cause, error_message);
 	return (error_number);
 }
 
@@ -34,7 +34,7 @@ void	ft_errno_exit(char *cause)
 
 	error_number = errno;
 	error_message = strerror(error_number);
-	ft_fprintf(STDERR_FILENO, "bash: %s: %s\n", cause, error_message);
+	ft_fprintf(stderr, "bash: %s: %s\n", cause, error_message);
 	exit (1);
 }
 

@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 19:02:41 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/06/25 15:17:27 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/07/04 18:35:05 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,6 @@ void	child_process(t_pipex *pipex, int pipefd[2], char **cmd_args, int i)
 	}
 	close(pipefd[WRITE_END]);
 	exec_file(file, cmd_args, pipex->env);
-	ft_fprintf(STDERR_FILENO, "bash: %s: command not found\n", file);// ??/exit 127 not do
+	ft_fprintf(stderr, "bash: %s: command not found\n", file);
 	exit (127);
 }

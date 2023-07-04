@@ -6,13 +6,13 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 17:16:31 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/06/24 21:36:23 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/07/04 18:40:17 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "ft_printf.h"
 #include "pipex.h"
+#include <stdlib.h>
 
 static int	check_mode(char **argv)
 {
