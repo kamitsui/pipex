@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 14:49:27 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/06/20 20:41:32 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/07/04 18:54:38 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include <stdlib.h>
 #include "libft.h"
 #include "ft_printf.h"
+#include <stdio.h>
 
 static void	initialize_machine(t_sm *machine, va_list *ap)
 {
@@ -57,13 +58,15 @@ int	ft_printf(const char *input, ...)
 	return (machine.out_size);
 }
 
-int	ft_fprintf(int fd, const char *input, ...)
+int	ft_fprintf(FILE *stream, const char *input, ...)
 {
 	t_sm	machine;
 	va_list	ap;
+	int		fd;
 
-	dup2(fd, STDOUT_FILENO);
-	close(fd);
+	fd = fileno(stream);
+	if (fd == -1)
+		return (-1);
 	va_start(ap, input);
 	initialize_machine(&machine, &ap);
 	process(input, &machine);
@@ -72,7 +75,7 @@ int	ft_fprintf(int fd, const char *input, ...)
 		machine.out = join_to_out(machine.out, machine.buffer, machine.len);
 		if (machine.out == NULL)
 			return (-1);
-		machine.out_size = write(1, machine.out, machine.out_size);
+		machine.out_size = write(fd, machine.out, machine.out_size);
 	}
 	free(machine.out);
 	va_end(ap);
